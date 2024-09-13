@@ -1,10 +1,10 @@
-import { LandingPage } from '@/components/landing-page'
+import { ContactPage } from '@/components/contact-page'
 import React from 'react'
 
 const page = () => {
   return (
     <>
-      <LandingPage /> 
+        <ContactPage />
     </>
   )
 }

@@ -1,10 +1,10 @@
-import { LandingPage } from '@/components/landing-page'
+import { UploadRecipe } from '@/components/upload-recipe'
 import React from 'react'
 
 const page = () => {
   return (
     <>
-      <LandingPage /> 
+        <UploadRecipe /> 
     </>
   )
 }
