@@ -80,7 +80,7 @@ export function ContactPage() {
           <div className="flex justify-center space-x-8">
             <div className="flex items-center text-orange-600">
               <Mail className="h-5 w-5 mr-2" />
-              <a href="mailto:contact@reciperoulette.com" className="hover:underline">contact@reciperoulette.com</a>
+              <a href="mailto:contact@reciperoulette.com" className="hover:underline">justmeetpatel@gmail.com</a>
             </div>
           </div>
         </div>

@@ -84,8 +84,11 @@ export function UploadRecipe() {
             {/* This is the View Your Recipe Section */}
             {/* <a href="#" className="ml-1 text-orange-500 hover:underline">
               View your recipe
-            </a> */}   
-          </AlertDescription> 
+            </a> */}
+            <a href="/" className="ml-1 text-orange-500 hover:underline">
+              Home Page
+            </a>
+          </AlertDescription>
         </Alert>
       </div>
     );
