@@ -1,6 +1,6 @@
-'use client';
-import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
+"use client";
+import { useState } from "react";
+import { createClient } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,27 +15,29 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 export function UploadRecipe() {
   const [recipe, setRecipe] = useState({
-    name: '',
-    ingredients: '',
-    instructions: '',
-    image: '',
+    name: "",
+    ingredients: "",
+    instructions: "",
+    image: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setRecipe(prev => ({ ...prev, [name]: value }));
+    setRecipe((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!recipe.name.trim()) newErrors.name = 'Recipe name is required';
-    if (!recipe.ingredients.trim()) newErrors.ingredients = 'Ingredients are required';
-    if (!recipe.instructions.trim()) newErrors.instructions = 'Cooking instructions are required';
+    if (!recipe.name.trim()) newErrors.name = "Recipe name is required";
+    if (!recipe.ingredients.trim())
+      newErrors.ingredients = "Ingredients are required";
+    if (!recipe.instructions.trim())
+      newErrors.instructions = "Cooking instructions are required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -44,11 +46,17 @@ export function UploadRecipe() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const { data, error } = await supabase.from('recipes').insert([
+        const ingredientsArray = recipe.ingredients
+          .split("\n")
+          .map((ing) => ing.trim()); // Convert ingredients to an array
+
+        const { data, error } = await supabase.from("recipes").insert([
           {
             name: recipe.name,
-            ingredients: recipe.ingredients,
-            instructions: recipe.instructions,
+            ingredients: ingredientsArray, // Save as an array
+            instructions: recipe.instructions
+              .split("\n")
+              .map((inst) => inst.trim()), // Convert instructions to an array if needed
             image: recipe.image,
           },
         ]);
@@ -59,7 +67,7 @@ export function UploadRecipe() {
 
         setIsSubmitted(true);
       } catch (error) {
-        console.error('Error saving recipe:', error.message);
+        console.error("Error saving recipe:", error.message);
         // Handle error state or display error message
       }
     }
@@ -72,8 +80,10 @@ export function UploadRecipe() {
           <Check className="h-4 w-4" />
           <AlertTitle>Success</AlertTitle>
           <AlertDescription>
-            Your recipe has been uploaded! 
-            <a href="#" className="ml-1 text-orange-500 hover:underline">View your recipe</a>
+            Your recipe has been uploaded!
+            <a href="#" className="ml-1 text-orange-500 hover:underline">
+              View your recipe
+            </a>
           </AlertDescription>
         </Alert>
       </div>
@@ -82,7 +92,9 @@ export function UploadRecipe() {
 
   return (
     <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-3xl font-bold text-center mb-6 text-primary text-black">Upload Your Own Recipe</h1>
+      <h1 className="text-3xl font-bold text-center mb-6 text-primary text-black">
+        Upload Your Own Recipe
+      </h1>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="text-black">
           <Label htmlFor="name">Recipe Name</Label>
@@ -91,9 +103,11 @@ export function UploadRecipe() {
             name="name"
             value={recipe.name}
             onChange={handleInputChange}
-            className={errors.name ? 'border-red-500' : ''}
+            className={errors.name ? "border-red-500" : ""}
           />
-          {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+          {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          )}
         </div>
         <div className="text-black">
           <Label htmlFor="ingredients">Ingredients (one per line)</Label>
@@ -102,9 +116,13 @@ export function UploadRecipe() {
             name="ingredients"
             value={recipe.ingredients}
             onChange={handleInputChange}
-            className={`min-h-[100px] ${errors.ingredients ? 'border-red-500' : ''}`}
+            className={`min-h-[100px] ${
+              errors.ingredients ? "border-red-500" : ""
+            }`}
           />
-          {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
+          {errors.ingredients && (
+            <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>
+          )}
         </div>
         <div className="text-black">
           <Label htmlFor="instructions">Cooking Instructions</Label>
@@ -113,9 +131,13 @@ export function UploadRecipe() {
             name="instructions"
             value={recipe.instructions}
             onChange={handleInputChange}
-            className={`min-h-[150px] ${errors.instructions ? 'border-red-500' : ''}`}
+            className={`min-h-[150px] ${
+              errors.instructions ? "border-red-500" : ""
+            }`}
           />
-          {errors.instructions && <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>}
+          {errors.instructions && (
+            <p className="text-red-500 text-sm mt-1">{errors.instructions}</p>
+          )}
         </div>
         <div className="text-black">
           <Label htmlFor="image">Recipe Image URL (optional)</Label>
