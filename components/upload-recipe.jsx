@@ -81,10 +81,11 @@ export function UploadRecipe() {
           <AlertTitle>Success</AlertTitle>
           <AlertDescription>
             Your recipe has been uploaded!
-            <a href="#" className="ml-1 text-orange-500 hover:underline">
+            {/* This is the View Your Recipe Section */}
+            {/* <a href="#" className="ml-1 text-orange-500 hover:underline">
               View your recipe
-            </a>
-          </AlertDescription>
+            </a> */}   
+          </AlertDescription> 
         </Alert>
       </div>
     );
