@@ -192,7 +192,7 @@ export function LandingPage() {
                 <Link href="https://github.com/JUSTMEETPATEL" className="text-gray-400 hover:text-white" target="_blank">
                   <Github className="h-6 w-6" />
                 </Link>
-                <Link href="www.linkedin.com/in/meetpatel011" className="text-gray-400 hover:text-white" target="_blank">
+                <Link href="https://www.linkedin.com/in/meetpatel011" className="text-gray-400 hover:text-white" target="_blank">
                   <Linkedin className="h-6 w-6" />
                 </Link>
                 <Link href="https://www.instagram.com/just_meet05" className="text-gray-400 hover:text-white" target="_blank">
