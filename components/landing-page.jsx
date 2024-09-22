@@ -127,7 +127,7 @@ export function LandingPage() {
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8 text-black">
-              Recipe of the Day
+              Recipe For You
             </h2>
             {isLoading ? (
               <div className="text-center">Loading Recipe of the Day...</div>
